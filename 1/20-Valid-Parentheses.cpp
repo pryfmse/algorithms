@@ -19,7 +19,7 @@ bool isValid(string s) {
     for (int i = 1; i < s.size(); i++) {
         if (s[i] == '{' || s[i] == '(' || s[i] == '[') {
             queue.push_front(s[i]);
-        } else {
+        } else if (!queue.empty()) {
             if (s[i] == '}') {
                 if (queue.front() != '{') {
                     return false;
@@ -34,7 +34,7 @@ bool isValid(string s) {
                 }
             }
             queue.pop_front();
-        }
+        } else { return 0; }
     }
-    return true;
+    return (queue.empty() ? true : false);
 }
